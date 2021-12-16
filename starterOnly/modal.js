@@ -1,3 +1,4 @@
+// Responsive NAVBAR
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -37,11 +38,9 @@ closeModal.addEventListener("click", () => {
   modalbg.style.display = "none";
 });
 
-// Issue #2 implement form entries & validation
-
-// Form fields : Checked functions///
-
-// 1) FIRSTNAME
+// Issue #2 & #3 - FORM VALIDATION
+// 1) FUNCTIONS FOR EACH FIELD
+//firstname
 function isFirstNameChecked() {
   if (first.value.trim() === "" || first.value.trim().length < 2) {
     first.parentElement.setAttribute("data-error-visible", "true");
@@ -51,7 +50,7 @@ function isFirstNameChecked() {
     return true;
   }
 }
-// 2) LASTNAME
+//lastname
 function isLastNameChecked() {
   if (last.value.trim() === "" || last.value.trim().length < 2) {
     last.parentElement.setAttribute("data-error-visible", "true");
@@ -61,8 +60,7 @@ function isLastNameChecked() {
     return true;
   }
 }
-
-// 3) MAIL
+//email
 function isEmailChecked() {
   const regexOk =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -75,7 +73,7 @@ function isEmailChecked() {
   }
 }
 
-// 4) BIRTHDATE
+//birthdate
 function isBirthdateChecked() {
   if (birthdate.value.trim() === "" || birthdate.value.trim().length !== 10) {
     birthdate.parentElement.setAttribute("data-error-visible", "true");
@@ -85,8 +83,7 @@ function isBirthdateChecked() {
     return true;
   }
 }
-
-// 5) QUANTITY
+//quantity
 function isQuantityChecked() {
   if (quantity.value.trim() === "" || isNaN(quantity.value.trim()) === true) {
     quantity.parentElement.setAttribute("data-error-visible", "true");
@@ -96,8 +93,7 @@ function isQuantityChecked() {
     return true;
   }
 }
-
-// 6) CITY
+//city
 function isCityChecked() {
   if (
     city[0].checked === false &&
@@ -114,7 +110,7 @@ function isCityChecked() {
     return true;
   }
 }
-
+//terms & conditions
 function isCheckbox1Checked() {
   if (checkbox1.checked === false) {
     checkbox1.parentElement.setAttribute("data-error-visible", "true");
@@ -125,91 +121,86 @@ function isCheckbox1Checked() {
   }
 }
 
-// FORM FIELDS VALUES
+// 2) FORM FIELDS EVENT & VALUES GENERATION
 
-// 1) FIRSTNAME
-first.addEventListener("input", (e) => {
-  let first = e.target.value;
-  console.log(first);
+//firstname
+first.addEventListener("focusout", (e) => {
   isFirstNameChecked();
+  let firstValue = e.target.value;
+  console.log(firstValue);
 });
 
-// 2) LASTNAME
-last.addEventListener("input", (e) => {
-  let last = e.target.value;
-  console.log(last);
+//lastname
+last.addEventListener("focusout", (e) => {
   isLastNameChecked();
+  let lastValue = e.target.value;
+  console.log(lastValue);
 });
 
-// 3) MAIL
-email.addEventListener("input", (e) => {
-  let email = e.target.value;
-  console.log(email);
+//email
+email.addEventListener("focusout", (e) => {
   isEmailChecked();
+  let emailValue = e.target.value;
+  console.log(emailValue);
 });
 
-// 4) BIRTHDATE
-birthdate.addEventListener("input", (e) => {
-  let birthdate = e.target.value;
-  console.log(birthdate);
+//birthdate
+birthdate.addEventListener("focusout", (e) => {
   isBirthdateChecked();
+  let birthdateValue = e.target.value;
+  console.log(birthdateValue);
 });
 
-// 5) QUANTITY
-quantity.addEventListener("input", (e) => {
-  let quantity = e.target.value;
-  console.log(quantity);
+//quantity
+quantity.addEventListener("focusout", (e) => {
   isQuantityChecked();
+  let quantityValue = e.target.value;
+  console.log(quantityValue);
 });
 
-// 6) CITY
+//city
 locations.addEventListener("input", (e) => {
-  let city = e.target.value;
-  console.log(city);
   isCityChecked();
+  let cityValue = e.target.value;
+  console.log(cityValue);
 });
 
-// 7) TERMS & CONDITIONS
+//terms & conditions
 checkbox1.addEventListener("input", (e) => {
-  let checkbox1 = e.target.checked;
-  console.log(checkbox1);
   isCheckbox1Checked();
+  let checkbox1Value = e.target.checked;
+  console.log(checkbox1Value);
 });
 
-// 8) NEWSLETTER
+//newsletter
 checkbox2.addEventListener("input", (e) => {
-  let checkbox2 = e.target.checked;
-  console.log(checkbox2);
+  let checkbox2Value = e.target.checked;
+  console.log(checkbox2Value);
 });
 
-//Event Submit
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
+// 3) ALL FIELDS CHECKED FUNCTION
 
-function allFieldschecked() {
-  isFirstNameChecked();
-  isLastNameChecked();
-  isEmailChecked();
-  isBirthdateChecked;
-  isQuantityChecked;
-  isCheckbox1Checked;
-  isCityChecked;
+function allFieldsChecked() {
+  return (
+    isFirstNameChecked() &&
+    isLastNameChecked() &&
+    isEmailChecked() &&
+    isBirthdateChecked() &&
+    isQuantityChecked() &&
+    isCityChecked() &&
+    isCheckbox1Checked()
+  );
 }
 
-// function validate() {
-//   if (
-//     isFirstNameChecked() === true &&
-//     isLastNameChecked() === true &&
-//     isEmailChecked() === true &&
-//     isBirthdateChecked() === true &&
-//     isQuantityChecked() === true &&
-//     isCheckbox1Checked() === true &&
-//     isCityChecked() === true
-//   ) {
-//     return true;
-//   } else {
-    
-//     return false
-//   }
-// }
+function formComplete() {
+  console.log("Formulaire validé");
+}
+
+//EVENT SUBMIT
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log("check submit");
+  if (allFieldsChecked()) {
+    formComplete();
+  }
+});

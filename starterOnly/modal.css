@@ -222,6 +222,7 @@ input {
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
+  text-align: left;
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
