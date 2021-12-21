@@ -14,6 +14,9 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const form = document.querySelector("form");
 const formData = document.querySelectorAll(".formData");
 const closeModal = document.querySelector(".close");
+const confirmation = document.querySelector(".successfull-container");
+const btnSuccess = document.getElementById("btn-confirmation")
+const closeSuccess = document.getElementById("close-success")
 
 // DOM Form fields
 const first = document.getElementById("first");
@@ -193,7 +196,9 @@ function allFieldsChecked() {
 }
 
 function formComplete() {
-  console.log("Formulaire validé");
+  form.reset();
+  modalbg.style.display = "none";
+  confirmation.style.display = "block";
 }
 
 //EVENT SUBMIT
@@ -204,3 +209,13 @@ form.addEventListener("submit", function (e) {
     formComplete();
   }
 });
+
+// CLOSE SUCCESSFULL MODAL
+closeSuccess.addEventListener("click", () => {
+  confirmation.style.display = "none";
+});
+
+btnSuccess.addEventListener("click", () => {
+  confirmation.style.display = "none";
+});
+
