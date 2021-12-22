@@ -504,7 +504,7 @@ footer {
 
 #btn-confirmation {
   position: relative;
-  top: 300px;
+  top: 200px;
 }
 
 /*-------------MEDIA QUERIES------------- */
@@ -547,7 +547,7 @@ footer {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+  
   }
 }
 
@@ -570,12 +570,13 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 3.5rem;
+    font-size: 3rem;
     white-space: normal;
   }
   .hero-text {
     width: unset;
     font-size: 1.5rem;
+    height: auto;
   }
   .hero-img img {
     border-radius: 10px;
