@@ -16,7 +16,7 @@ const formData = document.querySelectorAll(".formData");
 const closeModal = document.querySelector(".close");
 const confirmation = document.querySelector(".successfull-container");
 const btnSuccess = document.getElementById("btn-confirmation");
-const closeSuccess = document.getElementById("close-success");
+const closeSuccess = document.querySelector(".close-success");
 
 // DOM Form fields
 const first = document.getElementById("first");
