@@ -1,4 +1,4 @@
-          // Responsive NAVBAR
+// Responsive NAVBAR
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -15,8 +15,8 @@ const form = document.querySelector("form");
 const formData = document.querySelectorAll(".formData");
 const closeModal = document.querySelector(".close");
 const confirmation = document.querySelector(".successfull-container");
-const btnSuccess = document.getElementById("btn-confirmation")
-const closeSuccess = document.getElementById("close-success")
+const btnSuccess = document.getElementById("btn-confirmation");
+const closeSuccess = document.getElementById("close-success");
 
 // DOM Form fields
 const first = document.getElementById("first");
@@ -27,6 +27,12 @@ const quantity = document.getElementById("quantity");
 const city = document.getElementsByName("location");
 const checkbox1 = document.getElementById("checkbox1");
 const checkbox2 = document.getElementById("checkbox2");
+
+// Format fields
+const regexFirstName = /^[a-z ,.'-]+$/i;
+const regexMail =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regexNum = /^[1-9]{0,1}[0-9]$/;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -45,7 +51,11 @@ closeModal.addEventListener("click", () => {
 // 1) FUNCTIONS FOR EACH FIELD
 //firstname
 function isFirstNameChecked() {
-  if (first.value.trim() === "" || first.value.trim().length < 2) {
+  if (
+    first.value.trim() === "" ||
+    first.value.trim().length < 2 ||
+    !first.value.trim().match(regexFirstName)
+  ) {
     first.parentElement.setAttribute("data-error-visible", "true");
     return false;
   } else {
@@ -55,7 +65,11 @@ function isFirstNameChecked() {
 }
 //lastname
 function isLastNameChecked() {
-  if (last.value.trim() === "" || last.value.trim().length < 2) {
+  if (
+    last.value.trim() === "" ||
+    last.value.trim().length < 2 ||
+    !last.value.trim().match(regexFirstName)
+  ) {
     last.parentElement.setAttribute("data-error-visible", "true");
     return false;
   } else {
@@ -65,9 +79,7 @@ function isLastNameChecked() {
 }
 //email
 function isEmailChecked() {
-  const regexOk =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email.value.trim().match(regexOk)) {
+  if (email.value.trim().match(regexMail)) {
     email.parentElement.setAttribute("data-error-visible", "false");
     return true;
   } else {
@@ -88,7 +100,11 @@ function isBirthdateChecked() {
 }
 //quantity
 function isQuantityChecked() {
-  if (quantity.value.trim() === "" || isNaN(quantity.value.trim()) === true) {
+  if (
+    quantity.value.trim() === "" ||
+    isNaN(quantity.value.trim()) === true ||
+    quantity.value.trim().length > 2 
+  ) {
     quantity.parentElement.setAttribute("data-error-visible", "true");
     return false;
   } else {
@@ -218,4 +234,3 @@ closeSuccess.addEventListener("click", () => {
 btnSuccess.addEventListener("click", () => {
   confirmation.style.display = "none";
 });
-
